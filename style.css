@@ -46,7 +46,7 @@ body {
   
   /* Watercolor Green Energy & Forest Background */
   background: linear-gradient(180deg, var(--overlay-top) 0%, var(--overlay-bottom) 100%), 
-              url('6.png') no-repeat center center fixed;
+              url('watercolor_nature_bg.png') no-repeat center center fixed;
               
   background-size: cover;
   overflow-x: hidden;
@@ -482,7 +482,7 @@ a {
 }
 
 .btn-secondary {
-  background: rgb(67,155,200);
+  background: transparent;
   color: var(--text-dark);
   border: 2px solid rgba(15, 23, 42, 0.2);
 }
@@ -633,7 +633,7 @@ a {
 /* Tooltip Details Panel (Rich Layout with Images) */
 .badge-detail-tooltip {
   position: absolute;
-  bottom: -100px;
+  bottom: -60px;
   left: 50%;
   transform: translateX(-50%);
   width: 92%;
@@ -742,13 +742,71 @@ a {
   left: 48px;
   font-family: 'Satisfy', cursive;
   font-size: 3.5rem;
-  color: var(--text-dark);
-  opacity: 0.9;
-  transform: none; 
-  pointer-events: none;
-  user-select: none;
-  animation: fadeInUpSlogan 1s ease 0.6s both;
   text-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
+}
+
+/* ==========================================================================
+   MASCOT WIDGET
+   ========================================================================== */
+.mascot-widget {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  padding: 12px 20px;
+  border-radius: 20px;
+  margin: 24px 0;
+  box-shadow: var(--shadow-sm);
+  max-width: 530px;
+  text-align: left;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  z-index: 10;
+}
+
+.mascot-avatar {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  animation: floatMascot 4s ease-in-out infinite;
+}
+
+.frog-mascot-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mascot-bubble {
+  display: flex;
+  flex-direction: column;
+}
+
+.mascot-name {
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.mascot-text {
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--text-medium);
+  line-height: 1.4;
+}
+
+@keyframes floatMascot {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 /* ==========================================================================
@@ -812,49 +870,56 @@ a {
     overflow: auto; 
     height: auto;
   }
+  
   .hero-section {
-    padding: 130px 24px 140px;
+    display: block; /* Disable vertical flex centering which pushes top content off-screen */
+    padding: 100px 20px 80px;
     height: auto;
     min-height: 100vh;
   }
+  
   .hero-container {
     grid-template-columns: 1fr;
-    gap: 60px;
+    gap: 40px;
     text-align: center;
   }
+  
   .hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
+  
   .hero-subtitle {
     margin-left: auto;
     margin-right: auto;
+    font-size: 1.1rem;
   }
+  
   .hero-globe-container {
-    height: 450px;
-    max-width: 450px;
-    margin: 0 auto;
+    display: none; /* Hide the 3D globe and interactive badges on screens smaller than desktop to maximize performance and layout space */
   }
+
   .scroll-explore {
-    bottom: 40px;
+    display: none; /* Hide scroll indicator on mobile/tablet */
   }
+  
   .hero-stats {
     justify-content: center;
     gap: 20px;
   }
+  
   .hero-slogan {
     position: static;
-    margin-top: 40px;
+    margin-top: 30px;
     text-align: center;
     font-size: 3rem;
     transform: none;
     animation: fadeInUpSlogan 1s ease 0.6s both;
   }
+  
   .bg-turbines {
-    right: 2%;
-    width: 200px;
-    opacity: 0.6;
+    display: none; /* Hide turbines on tablet/mobile */
   }
 }
 
@@ -918,30 +983,9 @@ a {
     justify-content: center;
     gap: 16px;
   }
-     .hero-content,
-.hero-title,
-.hero-subtitle,
-.hero-stats,
-.hero-actions {
-    text-align: center;
-}
   
   .stat-divider {
     display: none; 
-  }
-  
-  .bg-turbines {
-    display: none; 
-  }
-  
-  .orbit-badge .badge-icon {
-    width: 42px;
-    height: 42px;
-  }
-  
-  .orbit-badge .badge-label {
-    font-size: 0.72rem;
-    padding: 2px 8px;
   }
 }
 
@@ -960,6 +1004,19 @@ a {
     width: 100%;
   }
 
+  .mascot-widget {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .mascot-avatar {
+    width: 50px;
+    height: 50px;
+  }
+
   .hero-stats {
     gap: 12px;
   }
@@ -970,46 +1027,5 @@ a {
   
   .stat-label {
     font-size: 0.7rem;
-  }
-     .hero-content,
-.hero-title,
-.hero-subtitle,
-.hero-stats,
-.hero-actions {
-    text-align: right;
-}
-
-  .badge-detail-tooltip {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    padding: 16px;
-    bottom: -100px;
-    width: 95%;
-  }
-
-  .tooltip-image-container {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 4px;
-  }
-  
-  .tooltip-text-container h4 {
-    font-size: 0.9rem;
-    margin-bottom: 4px;
-  }
-  
-  .tooltip-text-container p {
-    font-size: 0.75rem;
-  }
-  
-  .orbit-badge .badge-icon {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .orbit-badge .badge-label {
-    font-size: 0.65rem;
-    padding: 2px 6px;
   }
 }
