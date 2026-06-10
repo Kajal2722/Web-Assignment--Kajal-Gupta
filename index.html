@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sustainability Cell | IIT Bombay</title>
+  <meta name="description" content="Empowering sustainable practices and environmental consciousness through innovation, education, and action.">
+  <!-- Google Fonts: Outfit (headings), Inter (body), and Satisfy (elegant cursive slogan) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&family=Satisfy&display=swap" rel="stylesheet">
+  <!-- Stylesheet with cache-busting version query parameter -->
+  <link rel="stylesheet" href="style.css?v=3">
+  <!-- Three.js from CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <!-- Floating Leaves Background Animation -->
+  <div class="leaves-container" id="leaves-container"></div>
+
+  <!-- Twinkling Eco-Fireflies (glowing spores) Background Animation -->
+  <div class="fireflies-container">
+    <div class="firefly" style="top: 15%; left: 10%; animation-delay: 0s; width: 6px; height: 6px;"></div>
+    <div class="firefly" style="top: 35%; left: 25%; animation-delay: 1.5s; width: 8px; height: 8px;"></div>
+    <div class="firefly" style="top: 55%; left: 15%; animation-delay: 3s; width: 5px; height: 5px;"></div>
+    <div class="firefly" style="top: 75%; left: 40%; animation-delay: 0.5s; width: 7px; height: 7px;"></div>
+    <div class="firefly" style="top: 20%; left: 70%; animation-delay: 2s; width: 6px; height: 6px;"></div>
+    <div class="firefly" style="top: 45%; left: 85%; animation-delay: 4s; width: 8px; height: 8px;"></div>
+    <div class="firefly" style="top: 70%; left: 75%; animation-delay: 1s; width: 5px; height: 5px;"></div>
+    <div class="firefly" style="top: 85%; left: 20%; animation-delay: 2.5s; width: 7px; height: 7px;"></div>
+  </div>
+
+  <!-- Animated Wind Turbines in Background -->
+  <div class="bg-turbines">
+    <div class="turbine-wrapper turbine-large">
+      <svg class="turbine-svg" viewBox="0 0 100 180" xmlns="http://www.w3.org/2000/svg">
+        <path d="M48 180 L50 90 L52 180 Z" fill="rgba(71, 85, 105, 0.25)" />
+        <g class="blades">
+          <circle cx="50" cy="90" r="4" fill="rgba(71, 85, 105, 0.4)" />
+          <path d="M50 90 Q 50 35 48 35 Q 52 35 50 90 Z" fill="rgba(71, 85, 105, 0.25)" />
+          <path d="M50 90 Q 98 118 96 114 Q 100 122 50 90 Z" fill="rgba(71, 85, 105, 0.25)" />
+          <path d="M50 90 Q 2 118 4 114 Q 0 122 50 90 Z" fill="rgba(71, 85, 105, 0.25)" />
+        </g>
+      </svg>
+    </div>
+    <div class="turbine-wrapper turbine-small">
+      <svg class="turbine-svg" viewBox="0 0 100 180" xmlns="http://www.w3.org/2000/svg">
+        <path d="M48 180 L50 90 L52 180 Z" fill="rgba(71, 85, 105, 0.18)" />
+        <g class="blades">
+          <circle cx="50" cy="90" r="4" fill="rgba(71, 85, 105, 0.3)" />
+          <path d="M50 90 Q 50 35 48 35 Q 52 35 50 90 Z" fill="rgba(71, 85, 105, 0.18)" />
+          <path d="M50 90 Q 98 118 96 114 Q 100 122 50 90 Z" fill="rgba(71, 85, 105, 0.18)" />
+          <path d="M50 90 Q 2 118 4 114 Q 0 122 50 90 Z" fill="rgba(71, 85, 105, 0.18)" />
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <nav class="nav-container">
+      <div class="nav-logo">
+        <svg width="40" height="28" viewBox="0 0 90 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left Hexagon (Blue) -->
+          <path d="M30 10 L18 10 L8 28 C7 30 7 32 8 34 L18 50 L30 50 L40 32 C41 30 41 28 40 26 Z" stroke="#2563eb" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Right Hexagon (Green) -->
+          <path d="M60 10 L48 10 L38 28 C37 30 37 32 38 34 L48 50 L60 50 L70 32 C71 30 71 28 70 26 Z" stroke="#059669" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="logo-text">
+          <span class="logo-title">Sustainability Cell</span>
+          <span class="logo-sub">IIT Bombay</span>
+        </div>
+      </div>
+      
+      <!-- Hamburger Menu for Mobile -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+
+      <ul class="nav-links">
+        <li><a href="#" class="nav-link active-link">About</a></li>
+        <li><a href="#" class="nav-link">Events</a></li>
+        <li><a href="#" class="nav-link">Initiatives</a></li>
+        <li><a href="#" class="nav-link">Get Involved</a></li>
+        <li><a href="#" class="nav-link">Green Score</a></li>
+        <li><a href="#" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="about">
+    <div class="hero-container">
+      <!-- Left Column: Copy, Stats & Actions -->
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Sustainability Cell <br>
+          <span class="highlight">IIT Bombay</span>
+        </h1>
+        <p class="hero-subtitle">
+          Empowering sustainable practices and environmental consciousness through innovation, education, and action.
+        </p>
+
+        <!-- Stats Row -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">25+</span>
+            <span class="stat-label">Active Projects</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">100+</span>
+            <span class="stat-label">Core Members</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">5000+</span>
+            <span class="stat-label">Campus Impact</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">
+            Explore Initiatives 
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#" class="btn btn-secondary">Join the Movement</a>
+        </div>
+      </div>
+
+      <!-- Right Column: 3D Rotating Globe & Badges -->
+      <div class="hero-globe-container">
+        <!-- Dashboard / Circular dashed path svg -->
+        <svg class="orbit-path" viewBox="0 0 500 500">
+          <circle cx="250" cy="250" r="190" stroke="rgba(5, 150, 105, 0.15)" stroke-width="2" stroke-dasharray="8 6" fill="none" />
+        </svg>
+
+        <!-- 3D Canvas -->
+        <div class="globe-canvas-wrapper">
+          <canvas id="globe-canvas"></canvas>
+          <div class="atmosphere-glow"></div>
+        </div>
+
+        <!-- Interactive Orbiting Badges -->
+        <!-- 1. Biodiversity -->
+        <div class="orbit-badge" id="badge-biodiversity" data-angle="-120" data-title="Biodiversity" data-image="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=400&q=80" data-info="Protecting local flora & fauna, managing green cover, and restoring natural campus habitats.">
+          <div class="badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 18 12 22 12 22Z"/>
+              <path d="M12 8V16"/>
+              <path d="M8 12H16"/>
+            </svg>
+          </div>
+          <span class="badge-label">Biodiversity</span>
+        </div>
+
+        <!-- 2. Environment -->
+        <div class="orbit-badge" id="badge-environment" data-angle="-60" data-title="Environment" data-image="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" data-info="Driving ESG integration, climate analysis, policy planning, and awareness workshops on campus.">
+          <div class="badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a10 10 0 0 0-10 10c0 5.523 4.477 10 10 10s10-4.477 10-10S17.523 2 12 2z"/>
+              <path d="M12 6v12"/>
+              <path d="M8 10h8"/>
+            </svg>
+          </div>
+          <span class="badge-label">Environment</span>
+        </div>
+
+        <!-- 3. Energy -->
+        <div class="orbit-badge" id="badge-energy" data-angle="0" data-title="Energy" data-image="https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=400&q=80" data-info="Deploying solar installations, researching green fuels, and paving a roadmap for Net-Zero IITB by 2047.">
+          <div class="badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <span class="badge-label">Energy</span>
+        </div>
+
+        <!-- 4. Water -->
+        <div class="orbit-badge" id="badge-water" data-angle="60" data-title="Water" data-image="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=400&q=80" data-info="Monitoring rainwater harvesting networks, recycling wastewater, and conducting water quality audits.">
+          <div class="badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7z"/>
+            </svg>
+          </div>
+          <span class="badge-label">Water</span>
+        </div>
+
+        <!-- 5. Waste -->
+        <div class="orbit-badge" id="badge-waste" data-angle="120" data-title="Waste" data-image="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&w=400&q=80" data-info="Reforming waste segregation systems, organic composting, and reducing single-use plastics across hostels.">
+          <div class="badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+              <line x1="10" y1="11" x2="10" y2="17"/>
+              <line x1="14" y1="11" x2="14" y2="17"/>
+            </svg>
+          </div>
+          <span class="badge-label">Waste</span>
+        </div>
+
+        <!-- 6. Mobility -->
+        <div class="orbit-badge" id="badge-mobility" data-angle="180" data-title="Mobility" data-image="https://images.unsplash.com/photo-1571068316344-75bc76f77890?auto=format&fit=crop&w=400&q=80" data-info="Implementing RePedal (circular bicycle sharing), optimizing EV shuttles, and promoting walkability.">
+          <div class="badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="5.5" cy="17.5" r="2.5"/>
+              <circle cx="18.5" cy="17.5" r="2.5"/>
+              <path d="M15 6h5v2h-5z"/>
+              <path d="M12 17.5V14H7.5"/>
+              <path d="M16 10h-4l-3 4.5"/>
+            </svg>
+          </div>
+          <span class="badge-label">Mobility</span>
+        </div>
+
+        <!-- Tooltip box for active badge details -->
+        <div class="badge-detail-tooltip" id="badge-tooltip">
+          <div class="tooltip-image-container">
+            <img id="tooltip-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80" alt="Sustainability">
+          </div>
+          <div class="tooltip-text-container">
+            <h4 id="tooltip-title">Interactive Showcase</h4>
+            <p id="tooltip-desc">Hover over any of the 6 sustainability badges around the globe to explore our key focus areas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll down indicator -->
+    <div class="scroll-explore">
+      <span>Scroll to Explore</span>
+      <div class="arrow-down-circle">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <polyline points="19 12 12 19 5 12"></polyline>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Cursive slogan at the bottom-left -->
+    <div class="hero-slogan">Sustain. Thrive.</div>
+  </section>
+
+  <!-- App Logic script -->
+  <script src="app.js"></script>
+</body>
+</html>
