@@ -384,8 +384,13 @@ function positionBadges() {
     const x = centerX + radius * Math.cos(angleRad) - offset; 
     const y = centerY + radius * Math.sin(angleRad) - offset;
     
+  if (badge.id === "badge-biodiversity") {
+    badge.style.left = `${x}px`;
+    badge.style.top = `${y - 20}px`;
+} else {
     badge.style.left = `${x}px`;
     badge.style.top = `${y}px`;
+}
   });
 }
 
