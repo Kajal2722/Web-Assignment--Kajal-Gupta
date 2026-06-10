@@ -482,7 +482,7 @@ a {
 }
 
 .btn-secondary {
-  background: transparent;
+  background: rgb(67,155,200);
   color: var(--text-dark);
   border: 2px solid rgba(15, 23, 42, 0.2);
 }
