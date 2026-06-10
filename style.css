@@ -976,7 +976,7 @@ a {
 .hero-subtitle,
 .hero-stats,
 .hero-actions {
-    text-align: center;
+    text-align: right;
 }
 
   .badge-detail-tooltip {
