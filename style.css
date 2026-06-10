@@ -918,6 +918,13 @@ a {
     justify-content: center;
     gap: 16px;
   }
+     .hero-content,
+.hero-title,
+.hero-subtitle,
+.hero-stats,
+.hero-actions {
+    text-align: center;
+}
   
   .stat-divider {
     display: none; 
@@ -964,6 +971,13 @@ a {
   .stat-label {
     font-size: 0.7rem;
   }
+     .hero-content,
+.hero-title,
+.hero-subtitle,
+.hero-stats,
+.hero-actions {
+    text-align: center;
+}
 
   .badge-detail-tooltip {
     flex-direction: column;
