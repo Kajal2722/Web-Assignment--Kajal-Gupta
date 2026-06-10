@@ -193,10 +193,31 @@ function createCloudTexture() {
 }
 
 // ==========================================================================
+// DOM ELEMENT REFERENCES
+// ==========================================================================
+const wrapper = document.querySelector('.globe-canvas-wrapper');
+const canvasEl = document.getElementById('globe-canvas');
+const container = document.querySelector('.hero-globe-container');
+const badges = document.querySelectorAll('.orbit-badge');
+const tooltip = document.getElementById('badge-tooltip');
+const tooltipImg = document.getElementById('tooltip-img');
+const tooltipTitle = document.getElementById('tooltip-title');
+const tooltipDesc = document.getElementById('tooltip-desc');
+
+// ==========================================================================
 // THREE.JS SCENE CONFIGURATION
 // ==========================================================================
 let scene, camera, renderer, earth, clouds;
-const canvasEl = document.getElementById('globe-canvas');
+
+function resizeRenderer() {
+  if (!renderer || !camera || !wrapper) return;
+  const rect = wrapper.getBoundingClientRect();
+  const width = rect.width || 330;
+  const height = rect.height || 330;
+  renderer.setSize(width, height);
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+}
 
 function initThree() {
   // Scene Setup
@@ -213,7 +234,7 @@ function initThree() {
     alpha: true
   });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(330, 330);
+  resizeRenderer(); // Initialize size dynamically based on wrapper client bounds
 
   // Lighting
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
@@ -266,6 +287,11 @@ let targetRotationY = null;
 function animate() {
   requestAnimationFrame(animate);
 
+  // If the wrapper or its container is hidden via CSS (display: none), pause rendering to save mobile CPU/battery!
+  if (wrapper && wrapper.offsetParent === null) {
+    return;
+  }
+
   if (isDragging) {
     // Rotation updated by drag handler
   } else {
@@ -291,7 +317,7 @@ function animate() {
 // ==========================================================================
 // DRAG HANDLERS (DRAG TO ROTATE GLOBE)
 // ==========================================================================
-const wrapper = document.querySelector('.globe-canvas-wrapper');
+// Drag handlers wrapper listener references (declared globally at top)
 
 wrapper.addEventListener('mousedown', e => {
   isDragging = true;
@@ -356,26 +382,23 @@ window.addEventListener('touchend', () => {
   isDragging = false;
 });
 
-// ==========================================================================
 // BADGE POSITIONS (TRIGONOMETRY BASED RESPONSIVE PLACEMENT)
 // ==========================================================================
-const container = document.querySelector('.hero-globe-container');
-const badges = document.querySelectorAll('.orbit-badge');
-const tooltip = document.getElementById('badge-tooltip');
-const tooltipImg = document.getElementById('tooltip-img');
-const tooltipTitle = document.getElementById('tooltip-title');
-const tooltipDesc = document.getElementById('tooltip-desc');
+// Variables container, badges, tooltip, etc. are defined at the top of the file
 
 function positionBadges() {
-  if (!container) return;
-  const rect = container.getBoundingClientRect();
-  const centerX = rect.width / 2;
-  const centerY = rect.height / 2;
+  if (!container || !wrapper) return;
+  const containerRect = container.getBoundingClientRect();
+  const globeRect = wrapper.getBoundingClientRect();
   
-  const isMobile = window.innerWidth <= 768;
+  const centerX = containerRect.width / 2;
+  const centerY = containerRect.height / 2;
+  
   const isSmallMobile = window.innerWidth <= 480;
-  const radius = isMobile ? rect.width * 0.35 : 190;
-  const offset = isSmallMobile ? 19 : 24; // 38px/2 = 19px vs 48px/2 = 24px
+  
+  // Mathematically calculate radius relative to the ACTUAL globe wrapper bounds so badges stay outside!
+  const radius = (globeRect.width / 2) + (isSmallMobile ? 22 : 30);
+  const offset = isSmallMobile ? 18 : 24; // offset for 36px vs 48px badge icons
 
   badges.forEach(badge => {
     const angleDeg = parseFloat(badge.dataset.angle);
@@ -384,18 +407,19 @@ function positionBadges() {
     const x = centerX + radius * Math.cos(angleRad) - offset; 
     const y = centerY + radius * Math.sin(angleRad) - offset;
     
-  if (badge.id === "badge-biodiversity") {
-    badge.style.left = `${x}px`;
-    badge.style.top = `${y - 20}px`;
-} else {
     badge.style.left = `${x}px`;
     badge.style.top = `${y}px`;
-}
   });
 }
 
-window.addEventListener('resize', positionBadges);
-document.addEventListener('DOMContentLoaded', positionBadges);
+window.addEventListener('resize', () => {
+  resizeRenderer();
+  positionBadges();
+});
+document.addEventListener('DOMContentLoaded', () => {
+  resizeRenderer();
+  positionBadges();
+});
 
 // ==========================================================================
 // BADGE HOVER EFFECTS & DETAILS TOOLTIP
